@@ -136,7 +136,19 @@ Character.prototype = {
     }
 
     // Sprite Movement
-    if(inputs[this.controller].left === true) {
+    if (inputs[this.controller].fire === true && inputs[this.controller].right === true)
+		{
+      this.sprite.animations.play('fireRight');
+      this.sprite.body.velocity.x = 150;
+      this.fireGun();
+		} else if (inputs[this.controller].fire === true && inputs[this.controller].left === true) {
+      this.fireGun();
+      this.sprite.animations.play('fireLeft');
+      this.sprite.body.velocity.x = -150;
+    } else if (inputs[this.controller].fire === true && !inputs[this.controller].left && !inputs[this.controller].right) {
+      this.fireGun();
+      this.sprite.animations.play('fireRight');
+    } else if(inputs[this.controller].left === true) {
       this.sprite.body.velocity.x = -150;
       this.sprite.animations.play('left');
     } else if (inputs[this.controller].right === true) {
@@ -146,27 +158,13 @@ Character.prototype = {
       // this.sprite.body.velocity.y = -350;
       this.sprite.animations.play('jump');
     }
-    else {
-      this.sprite.animations.stop();
-      this.sprite.animations.play('stand');
-    }
-    if (inputs[this.controller].jump === true && this.sprite.body.touching.down)
+    else if (inputs[this.controller].jump === true && this.sprite.body.touching.down)
     {
         this.sprite.body.velocity.y = -350;
     }
-    if (inputs[this.controller].fire === true && inputs[this.controller].right === true)
-		{
-      this.sprite.animations.play('fireRight');
-      this.fireGun();
-		}
-    if (inputs[this.controller].fire === true && inputs[this.controller].left === true) {
-      this.fireGun();
-      this.sprite.animations.play('fireLeft');
-      // console.log('test');
-    }
-    if (inputs[this.controller].fire === true && !inputs[this.controller].left && !inputs[this.controller].right) {
-      this.fireGun();
-      this.sprite.animations.play('fireRight');
+    else {
+      this.sprite.animations.stop();
+      this.sprite.animations.play('stand');
     }
 
 
