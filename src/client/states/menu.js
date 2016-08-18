@@ -12,7 +12,7 @@ Menu.prototype = {
   init: function() {
     // Call createGame on init, which will emit 'create-game to the backend'
     this.createGame();
-    this.titleText = game.make.text(game.world.centerX, 90, 'Not-So-Super\n Smash Bros.', {
+    this.titleText = game.make.text(game.world.centerX, 60, 'Not-So-Super Smash Bros.', {
       font: '60px PipeDream',
       align: 'center',
     });
@@ -61,11 +61,11 @@ Menu.prototype = {
       align: 'center',
     }
 
-    var directions = game.add.text(game.world.centerX, 200, 'Directions: Go to this website on your phone, \n click HOST GAME and enter in the Game ID.', directionStyle);
-    directions.addColor('blue', 0);
-    directions.anchor.setTo(0.5, 0.5);
+    // var directions = game.add.text(game.world.centerX, 200, 'Directions: Go to this website on your phone, \n click HOST GAME and enter in the Game ID.', directionStyle);
+    // directions.addColor('blue', 0);
+    // directions.anchor.setTo(0.5, 0.5);
 
-    var text = game.make.text(game.world.centerX, game.world.centerY, 'HOST GAME', style);
+    var text = game.make.text(game.world.centerX, game.world.centerY + 15, 'HOST GAME', style);
     text.anchor.setTo(0.5, 0.5);
 
     var hoverTrue = function (button) {
@@ -118,7 +118,7 @@ Menu.prototype = {
       align: 'center',
     }
 
-    var text = game.add.text(game.world.centerX, game.world.centerY - 35, 'Start Match', style);
+    var text = game.add.text(game.world.centerX, game.world.centerY + 60, 'Start Match', style);
     text.anchor.setTo(0.5,0.5);
     text.setShadow(5, 5, 'rgba(0, 0, 0, 0.5)', 0);
 
@@ -151,7 +151,7 @@ Menu.prototype = {
       this.mainBackground.kill();
       game.stage.backgroundColor = '#6899F8';
 
-      waitingText = game.add.text(game.world.centerX, game.world.centerY - 25, 'Waiting for more players...', {
+      waitingText = game.add.text(game.world.centerX, game.world.centerY + 60, 'Waiting for more players...', {
         font: '35px PipeDream',
         align: 'center',
         fill: 'red'

@@ -1,6 +1,6 @@
 var socket = io();
 
-var game = new Phaser.Game(800, 600, Phaser.AUTO, 'Not-So-Super-Smash');
+var game = new Phaser.Game(890, 220, Phaser.AUTO, 'Not-So-Super-Smash');
 
 function Main() {}
 

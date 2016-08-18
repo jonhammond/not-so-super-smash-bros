@@ -50,28 +50,42 @@ Game.prototype = {
     //  We will enable physics for any object that is created in this group
     this.platforms.enableBody = true;
 
-    var ground = this.platforms.create(0, this.world.height - 64, 'ground');
+    var ground = this.platforms.create(0, this.world.height - 20, 'ground');
     ground.body.immovable = true;
 
     ground.enableBody = true;
 
-    var ledge = this.platforms.create(250, 350, 'box');
+    var ledge = this.platforms.create(250, 110, 'box');
     ledge.body.immovable = true;
+    ledge.scale.set(.5, .5);
 
-    ledge = this.platforms.create(600, 150, 'box');
+    ledge = this.platforms.create(700, 70, 'box');
     ledge.body.immovable = true;
+    ledge.scale.set(.5, .5);
 
-    ledge = this.platforms.create(-50, 150, 'box');
+    ledge = this.platforms.create(-50, 70, 'box');
     ledge.body.immovable = true;
+    ledge.scale.set(.5, .5);
 
-    ledge = this.platforms.create(100, 350, 'littlebox');
+    ledge = this.platforms.create(170, 100, 'littlebox');
     ledge.body.immovable = true;
+    ledge.scale.set(.5, .5);
 
-		ledge = this.platforms.create(350, 200, 'littlebox');
+		ledge = this.platforms.create(420, 85, 'littlebox');
     ledge.body.immovable = true;
+    ledge.scale.set(.5, .5);
 
-		ledge = this.platforms.create(580, 450, 'pipe');
+    ledge = this.platforms.create(300, 175, 'littlebox');
     ledge.body.immovable = true;
+    ledge.scale.set(.5, .5);
+
+    ledge = this.platforms.create(500, 130, 'littlebox');
+    ledge.body.immovable = true;
+    ledge.scale.set(.5, .5);
+
+		ledge = this.platforms.create(580, this.world.height - 97, 'pipe');
+    ledge.body.immovable = true;
+    ledge.scale.set(.5, .5);
 
     setInterval(powerUp, 1000);
 

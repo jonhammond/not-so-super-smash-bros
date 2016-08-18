@@ -32,7 +32,7 @@ function Character (controller, platforms, bullets, superBullets, superBullets2,
   switch(controller) {
     case 0:
       x = 50;
-      y = game.world.height - 150;
+      y = game.world.height - 130;
       character = 'megaman';
       self.name = character;
       left = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -47,12 +47,12 @@ function Character (controller, platforms, bullets, superBullets, superBullets2,
       die = [29, 30, 29, 30, 29, 30];
       stand = [10];
       powerUp = [27];
-      scale = 1.5;
+      scale = .75;
       xHP = 40;
       break;
     case 1:
-      x = 100;
-      y = game.world.height - 350;
+      x = 400;
+      y = game.world.height - 120;
       character = 'kirby';
       left = [20, 19, 18, 17, 16, 15, 14, 13, 12, 11];
       right = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -63,12 +63,12 @@ function Character (controller, platforms, bullets, superBullets, superBullets2,
       fire = [21];
       die = [23, 23, 23, 23, 23, 23];
       powerUp = [21];
-      scale = 2.3;
+      scale = 1.3;
       xHP = 230;
       break;
     case 2:
-      x = 600;
-      y = game.world.height - 250;
+      x = 300;
+      y = game.world.height - 200;
       character = 'pikachu';
       left = [0, 1, 2];
       right = [8, 7, 6];
@@ -78,7 +78,7 @@ function Character (controller, platforms, bullets, superBullets, superBullets2,
       fireLeft = [13];
       stand = [3];
       powerUp = [5];
-      scale = 1.8;
+      scale = 1;
       xHP = 430;
       die = [4, 4, 4, 4, 4, 4];
       break;
@@ -95,7 +95,7 @@ function Character (controller, platforms, bullets, superBullets, superBullets2,
       die = [23, 23, 23, 23, 23, 23];
       stand = [8];
       powerUp = [19, 20];
-      scale = 1.8;
+      scale = 1;
       xHP = 630;
       break;
   }
@@ -219,16 +219,16 @@ Character.prototype = {
         this.bullet.playerId = this.controller;
 
         if (this.controller === 0) {
-          this.bullet.reset(this.sprite.x + 25, this.sprite.y + 35);
+          this.bullet.reset(this.sprite.x + 10, this.sprite.y + 15);
         }
         if (this.controller === 1) {
-          this.bullet.reset(this.sprite.x + 25, this.sprite.y + 20);
+          this.bullet.reset(this.sprite.x + 10, this.sprite.y + 5);
         }
         if (this.controller === 2) {
-          this.bullet.reset(this.sprite.x + 25, this.sprite.y + 20);
+          this.bullet.reset(this.sprite.x + 5, this.sprite.y + 10);
         }
         if (this.controller === 3) {
-          this.bullet.reset(this.sprite.x + 25, this.sprite.y + 30);
+          this.bullet.reset(this.sprite.x + 10, this.sprite.y + 10);
         }
         if (inputs[this.controller].right === true) {
          this.sprite.lastRightFire = 1;
