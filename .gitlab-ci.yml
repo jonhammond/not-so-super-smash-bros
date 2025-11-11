@@ -1,12 +1,24 @@
-image: node:latest
+default:
+  image: node
 
 before_script:
   - apt-get update && apt-get install -y libcups2 libdbus-1-3 libexpat1 libfontconfig1 libgbm1 libgcc1 libgconf-2-4 libgdk-pixbuf2.0-0 libglib2.0-0 libgtk-3-0 libnspr4 libpango-1.0-0 libnss3 libxss1 libasound2
+  # Download Chrome
+  - apk add chromium
+  - export CHROME_BIN=/usr/bin/chromium-browser
+  - export CHROME_PATH=/usr/lib/chromium/
   - npm install
+  # X Server
+  - apk add xvfb
+  - export DISPLAY=:99
+  - Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
 
 cache:
+  key:
+    files:
+      - package-lock.json
   paths:
-   - node_modules/
+   - node_modules
 
 stages:
   - test
@@ -14,12 +26,13 @@ stages:
 
 test_job:
   stage: test
+  
   script:
-   - echo "Running tests..."
-   - npm run test
+   - "echo 'Running tests...'"
+   - npm run test -- --browsers=Headless_Chrome --no-watch
 
 build_job:
   stage: build
   script:
-   - echo "Building application..."
-   - gulp
+   - "echo 'Building application...'"
+   - "gulp"
