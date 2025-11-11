@@ -5,9 +5,9 @@ module.exports = function(config) {
   config.set({
     basePath: '',
     frameworks: ['jasmine'],
-    // browsers: ['ChromeHeadless'],
+    browsers: ['Chrome'],
     singleRun: true,
-    autoWatch: true,
+    // autoWatch: true,
     reporters: ['progress'],
     files:["src/spec/**.js"]
   });
