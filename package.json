@@ -1,9 +1,10 @@
 {
-  "name": "_example",
+  "name": "example",
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./src/server/app.js"
+    "start": "node ./src/server/app.js",
+    "test": "karma start --single-run"
   },
   "dependencies": {
     "body-parser": "~1.13.2",
