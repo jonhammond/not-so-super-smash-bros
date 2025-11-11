@@ -1,14 +1,11 @@
 // *** main dependencies *** //
 var express = require('express');
 var path = require('path');
-var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 // *** routes *** //
-var routes = require('./routes/index.js');
-
 
 // *** express instance *** //
 var app = express();
@@ -38,20 +35,20 @@ app.get('/controller', function(req, res) {
 
 
 // *** SOCKET.IO *** //
-var io = require('socket.io').listen(server);
+var io = require("socket.io")(server)
 var rooms = {};
 
 io.on('connect', function(socket){
-  console.log('a user connected');
+  // console.log('a user connected');
 
   //connect new player to the room
   socket.on('new-player', function(data){
 
     if (!rooms[data.gameRoom] || rooms[data.gameRoom].started) {
-      console.log('invalid room');
+      // console.log('invalid room');
       socket.emit('invalid-room');
     } else {
-      console.log("Joined",data.gameRoom)
+      // console.log("Joined",data.gameRoom)
       socket.room = data.gameRoom;
 
       if (rooms[data.gameRoom].players) {
@@ -59,7 +56,7 @@ io.on('connect', function(socket){
         console.log("Players:",rooms[data.gameRoom].players)
       } else {
         rooms[data.gameRoom].players = 1;
-        console.log("Players:",rooms[data.gameRoom].players)
+        // console.log("Players:",rooms[data.gameRoom].players)
       }
       console.log("Phone:", data.gameRoom);
       if(rooms[data.gameRoom].players < 5) {
@@ -67,14 +64,12 @@ io.on('connect', function(socket){
 
         var playerId = rooms[data.gameRoom].players - 1;
         socket.emit('success-join', playerId);
-      }
-      else {
+      } else {
         socket.emit('fail-join');
       }
       if (rooms[data.gameRoom].players >= 1 && rooms[data.gameRoom].players < 5 ) {
         io.sockets.in(rooms[socket.room].id).emit('start-game');
-      }
-      else {
+      } else {
         console.log('Error');
       }
     }
@@ -97,19 +92,19 @@ io.on('connect', function(socket){
       socket.join(data.viewId);
       socket.emit('success-create', data);
     } else {
-      console.log("Shit's broke server-side");
+      // console.log("server-side bug");
     }
   })
 
   // Check for 'start-game' emit
   socket.on('game-start', function(data) {
-    console.log('GameRoom:', data.gameRoom);
+    // console.log('GameRoom:', data.gameRoom);
     rooms[data.gameRoom].started = true;
   })
 
   // Check for 'disconnect emit'
   socket.on('disconnect', function(){
-    console.log('user disconnected');
+    // console.log('user disconnected');
   });
 });
 
