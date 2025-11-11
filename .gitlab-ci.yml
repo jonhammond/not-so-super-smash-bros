@@ -15,10 +15,10 @@ test_job:
   stage: test
   script:
    - echo "Running tests..."
-   - karma start --single-run
+   - npm run test
 
 build_job:
   stage: build
   script:
    - echo "Building application..."
-   - gulp build
+   - gulp
