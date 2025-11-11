@@ -7,11 +7,12 @@ before_script:
   - apk add chromium
   - export CHROME_BIN=/usr/bin/chromium-browser
   - export CHROME_PATH=/usr/lib/chromium/
-  - npm install
   # X Server
   - apk add xvfb
   - export DISPLAY=:99
   - Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
+  - npm i gulp-cli -g
+  - npm install
 
 cache:
   key:
