@@ -14,7 +14,6 @@ const clean = require('gulp-clean');
 /**
  * Config
  */
-
 var paths = {
   styles: [
     './src/client/css/*.css',
@@ -102,7 +101,6 @@ gulp.task('watch', function() {
   gulp.watch(paths.scripts);
 });
 
-
 gulp.task('connectDist', function (cb) {
   var called = false;
   return nodemon(nodemonDistConfig)
@@ -119,6 +117,43 @@ gulp.task('connectDist', function (cb) {
   });
 });
 
+/**
+ * Run test once and exit
+ */
+const path = require('path');
+// const configFilePath = path.resolve(__dirname, 'karma.conf.js');
+const karma = require('karma')
+const parseConfig = karma.config.parseConfig
+const jasmine = require('gulp-jasmine');
+const Server = karma.Server
+
+gulp.task('test', async function (done) {
+  return parseConfig(null, { port: 5000 }, { promiseConfig: true, throwErrors: true }
+).then(
+  (karmaConfig) => {
+    // gulp.src('/spec/test/**.js')
+    // .pipe(jasmine())
+
+    const server = new Server(karmaConfig, function doneCallback(exitCode, possibleErrorCode) {
+      console.log('Karma has exited with ' + exitCode)
+      console.log('Error ' + possibleErrorCode)
+      process.exit(exitCode)
+    })
+    
+    server.on('progress', function(data) {
+      console.log('Karma progress: ' + data)
+      process.stdout.write(data)
+    })
+
+    server.on("browser_register", function (browser) {
+      console.log("A new browser was registered");
+    });
+  },
+  (rejectReason) => {
+     /* respond to the rejection reason error */ 
+     console.error('Rejected: ' + rejectReason)}
+);
+});
 
 // *** default task *** //
 gulp.task('default', gulp.series('browser-sync', 'watch'));

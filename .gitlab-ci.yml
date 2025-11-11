@@ -1,0 +1,24 @@
+image: node:latest
+
+before_script:
+  - npm install
+
+cache:
+  paths:
+   - node_modules/
+
+stages:
+  - test
+  - build
+
+test_job:
+  stage: test
+  script:
+   - echo "Running tests..."
+   - karma start --single-run
+
+build_job:
+  stage: build
+  script:
+   - echo "Building application..."
+   - gulp build
