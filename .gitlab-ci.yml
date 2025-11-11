@@ -16,7 +16,7 @@ test_job:
   stage: test
   script:
    - echo "Running tests..."
-   - npm run test --no-sandbox
+   - npm run test
 
 build_job:
   stage: build
