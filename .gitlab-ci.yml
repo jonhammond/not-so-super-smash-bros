@@ -23,7 +23,7 @@ cache:
 
 stages:
   - test
-  - build
+  - stg_deploy
 
 test_job:
   stage: test
@@ -32,8 +32,8 @@ test_job:
    - "echo 'Running tests...'"
    - npm run test -- --browsers=Headless_Chrome --no-watch
 
-build_job:
-  stage: build
+stg_deploy:
+  stage: stg_deploy
   script:
-   - "echo 'Building application...'"
-   - "gulp"
+   - "echo 'Deploying application to staging...'"
+   - gulp
