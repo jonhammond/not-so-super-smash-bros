@@ -11,8 +11,6 @@ ARG NODE_VERSION=24.8.0
 FROM node:${NODE_VERSION}-alpine AS base
 
 WORKDIR /usr/src/app
-# Expose the port that the application listens on.
-EXPOSE 5000
 
 # Download dependencies as a separate step to take advantage of Docker's caching.
 # Leverage a cache mount to /root/.npm to speed up subsequent builds.
@@ -23,35 +21,45 @@ RUN --mount=type=bind,source=package.json,target=package.json \
     --mount=type=bind,source=package-lock.json,target=package-lock.json \
     --mount=type=cache,target=/root/.npm \
     npm ci --include=dev
-# Run the application as a non-root user.
-USER node
 # Copy the rest of the source files into the image.
 COPY . .
+# Expose the port that the application listens on.
+EXPOSE 3000 5000 9229
 # Run the application.
 CMD npm run dev
 
-FROM base AS staging
+# FROM base AS staging
+# RUN --mount=type=bind,source=package.json,target=package.json \
+#     --mount=type=bind,source=package-lock.json,target=package-lock.json \
+#     --mount=type=cache,target=/root/.npm \
+#     npm ci --omit=dev
+# Run the application as a non-root user.
+# USER node
+# Copy the rest of the source files into the image.
+# COPY . .
+# Expose the port that the application listens on.
+# EXPOSE 5000
+# Run the application.
+# CMD npm start staging
+
+FROM base AS prod
 RUN --mount=type=bind,source=package.json,target=package.json \
     --mount=type=bind,source=package-lock.json,target=package-lock.json \
     --mount=type=cache,target=/root/.npm \
     npm ci --omit=dev
-# Run the application as a non-root user.
-USER node
 # Copy the rest of the source files into the image.
 COPY . .
 # Expose the port that the application listens on.
-EXPOSE 5000
+EXPOSE 3000
 # Run the application.
-CMD npm start staging
+CMD npm start
 
 FROM base AS test
-ENV NODE_ENV="test"
+ENV NODE_ENV=test
 RUN --mount=type=bind,source=package.json,target=package.json \
     --mount=type=bind,source=package-lock.json,target=package-lock.json \
     --mount=type=cache,target=/root/.npm \
     npm ci --include=dev
-# Run the application as a non-root user.
-USER node
 # Copy the rest of the source files into the image.
 COPY . .
 # Run the application.
