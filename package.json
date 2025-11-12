@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "start": "node ./src/server/app.js",
-    "test": "karma start --single-run"
+    "test": "node ./src/server/app.js",
+    "dev": "nodemon --inspect=0.0.0.0:9229 -L src/index.js"
+    
   },
   "dependencies": {
     "body-parser": "~2.2.0",

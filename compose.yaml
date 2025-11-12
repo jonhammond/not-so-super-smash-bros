@@ -11,12 +11,12 @@ services:
   server:
     build:
       context: .
-      target: testing
+      target: dev
     ports:
       - 5000:5000
       - 9229:9229
-    environment:
-      NODE_ENV: staging
+    # environment:
+    #   NODE_ENV: staging
     # ports:
     #   - 5001:5001
 
