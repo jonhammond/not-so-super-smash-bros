@@ -2,7 +2,7 @@
 
 [![ci](https://github.com/jonhammond/not-so-super-smash-bros/actions/workflows/main.yml/badge.svg)](https://github.com/jonhammond/not-so-super-smash-bros/actions/workflows/main.yml)
 
-<a href="https://not-so-super-smash-bros.herokuapp.com/">Link to Game</a>
+<a href="https://notsosupersmashbros.jonhammond.org/">Link to Game</a>
 <h3>Details: </h3>
   <p>Not So Super Smash Bros is a multiplayer game that mimics the Nintendo game of Super Smash Brothers. This game is built with socket.io and phaser.io. To play this game, you will need a few things: </p>
     <ul>
