@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./src/server/app.js",
-    "test": "node ./src/server/app.js",
+    "test": "npx jasmine",
     "dev": "nodemon --inspect=0.0.0.0:9229 -L src/index.js"
     
   },
