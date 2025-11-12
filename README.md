@@ -25,6 +25,16 @@
         <li>Run gulp</li>
       </ul>
 
+  <h3>Running with Docker</h3>
+  <p>Alternatively, you can run the game using Docker (no need to install Node.js or gulp):</p>
+    <ul>
+      <li>Fork and clone</li>
+      <li>Make sure Docker Desktop is running</li>
+      <li>Run <code>docker compose up --build</code></li>
+      <li>Access the game at http://localhost:3000</li>
+    </ul>
+  <p>See <a href="README.Docker.md">README.Docker.md</a> for detailed Docker instructions.</p>
+
   <h3>Controllers Layout: </h3>
   <hr>
 
