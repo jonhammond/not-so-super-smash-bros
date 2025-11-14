@@ -26,22 +26,22 @@
         <li>Run gulp</li>
       </ul>
 
-  <h3>Controllers Layout: </h3>
+  <h3>Controllers Layout:</h3>
   <hr>
 
   <img src="src/client/assets/readme/megacontroller.png">
 
-  <h3>Individual Controllers: </h3>
+  <h3>Individual Controllers:</h3>
   <hr>
 
   <img src="src/client/assets/readme/controllers2.JPG">
 
-  <h3>Game Character Screen: </h3>
+  <h3>Game Character Screen:</h3>
   <hr>
 
   <img src="src/client/assets/readme/splashpage.png">
 
-  <h3>Game Screen: </h3>
+  <h3>Game Screen:</h3>
   <hr>
 
   <img src="src/client/assets/readme/game.png">
