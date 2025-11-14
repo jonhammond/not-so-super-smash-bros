@@ -24,7 +24,7 @@ In your GitLab project, go to **Settings > CI/CD > Variables** and add:
 - **HEROKU_API_KEY**: Your Heroku API key
   - Find it at: https://dashboard.heroku.com/account
   - Or run: `heroku auth:token`
-  - Mark as **Protected** and **Masked**
+  - Mark as **Protected** and **Masked** 
 
 - **HEROKU_APP_NAME**: Your Heroku app name
   - Example: `not-so-super-smash-bros`
