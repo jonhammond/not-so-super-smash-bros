@@ -49,7 +49,7 @@ The GitLab CI pipeline has three stages:
 
 ## Files Created
 
-- **Procfile**: Tells Heroku how to run the app (`web: node ./src/server/app.js`)
+- **Procfile**: Tells Heroku how to run the app (`web: npm start`)
 - **.gitlab-ci.yml**: Updated with deployment stage
 
 ## Verify Deployment
