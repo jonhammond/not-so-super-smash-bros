@@ -18,8 +18,12 @@ var app = express();
 
 app.set('port', process.env.PORT || 3000);
 
-var server = app.listen(app.get('port'), function() {
-  console.log('Express server listening on port ' + server.address().port);
+var server = app.listen(app.get('port'), function(err) {
+  if (err) {
+    console.error('Error starting server:', err);
+  } else {
+    console.log('Express server listening on port ' + server.address().port);
+  }
 });
 // *** config middleware *** //
 app.use(logger('dev'));
