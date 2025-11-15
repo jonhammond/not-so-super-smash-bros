@@ -1,9 +1,15 @@
 // *** main dependencies *** //
-var express = require('express');
-var path = require('path');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
+import express from 'express';
+import { join } from 'path';
+import logger from 'morgan';
+import cookieParser from 'cookie-parser';
+import bodyParser from 'body-parser';
+
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 // *** routes *** //
 
@@ -17,29 +23,30 @@ var server = app.listen(app.get('port'), function() {
 });
 // *** config middleware *** //
 app.use(logger('dev'));
-app.use(bodyParser.json());
+app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, '../client')));
+app.use(express.static(join(__dirname, '../client')));
 
 
 // *** main routes *** //
 app.get('/', function(req, res, next) {
-  res.sendFile(path.join(__dirname, '../client/', 'layout.html'));
+  res.sendFile(join(__dirname, '../client/', 'layout.html'));
 });
 
 app.get('/controller', function(req, res) {
   //Serve up phone page here.
-  res.sendFile(path.join(__dirname, '../client', 'controller.html'));
+  res.sendFile(join(__dirname, '../client', 'controller.html'));
 });
 
 
 // *** SOCKET.IO *** //
-var io = require("socket.io")(server)
+import { Server } from "socket.io";
+const io = new Server(server);
 var rooms = {};
 
 io.on('connect', function(socket){
-  // console.log('a user connected');
+  // console.log('a user connected'); 
 
   //connect new player to the room
   socket.on('new-player', function(data){
@@ -109,4 +116,4 @@ io.on('connect', function(socket){
 });
 
 
-module.exports = server;
+export default server;
